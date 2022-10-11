@@ -3,7 +3,6 @@ package com.example.taco
 import java.io.Serializable
 import java.util.*
 
-
 data class TacoOrder(val serialVersionUID:Long = 1L): Serializable {
 
     var id: Long? = null

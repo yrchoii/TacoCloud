@@ -1,7 +1,8 @@
 package com.example.taco.data
 
 import com.example.taco.TacoOrder
+import org.springframework.data.repository.CrudRepository
 
-interface OrderRepository {
-    fun save(order: TacoOrder):TacoOrder
+interface OrderRepository: CrudRepository<TacoOrder, Long> {
+//    fun save(order: TacoOrder)
 }

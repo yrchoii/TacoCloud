@@ -42,12 +42,21 @@ abstract class DesignTacoController {
 //            Ingredient("SRCR","Sour Cream", Ingredient.Type.SAUCE),
 //        )
 
-        var ingredients : Iterable<Ingredient> = ingredientRepo.findAll()
+//        var ingredients : Iterable<Ingredient> = ingredientRepo.findAll()
+//
+//        var types =  Ingredient.Type.values();
+//        for( type in types)
+//        {
+//            model.addAttribute(type.toString().lowercase(), filterByType(ingredients as List<Ingredient>, type))
+//        }
 
-        var types =  Ingredient.Type.values();
-        for( type in types)
-        {
-            model.addAttribute(type.toString().lowercase(), filterByType(ingredients as List<Ingredient>, type))
+        val ingredients = ingredientRepo.findAll()
+        val types: Array<Ingredient.Type> = Ingredient.Type.values()
+        for (type in types) {
+            model.addAttribute(
+                type.toString().toLowerCase(),
+                filterByType(ingredients as List<Ingredient>, type)
+            )
         }
     }
 

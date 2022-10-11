@@ -36,10 +36,8 @@ import lombok.Data
 //        SAUCE
 //    }
 //}
-data class Ingredient(val id:String)
+data class Ingredient(val id:String, val name:String, val type:Type)
 {
-    var name:String = ""
-    var type:Type = Type.WRAP
     enum class Type{
         WRAP,
         PROTEIN,
