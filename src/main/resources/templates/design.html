@@ -13,12 +13,11 @@
     <input type="submit" value="Logout"/>
 </form>
 
+<form th:method="POST" th:object="${taco}" th:action="@{/design}" id="tacoForm">
 
-<form method="POST" th:object="${taco}">
-
-<!--&lt;!&ndash;    <span class="validationError"&ndash;&gt;-->
-<!--&lt;!&ndash;          th:if="${#fields.hasErrors('ingredients')}"&ndash;&gt;-->
-<!--&lt;!&ndash;          th:errors="*{ingredients}">Ingredient Error</span>&ndash;&gt;-->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ingredients')}"
+          th:errors="*{ingredients}">Ingredient Error</span>
 
     <div class="grid">
         <div class="ingredient-group" id="wraps">
@@ -68,12 +67,14 @@
     </div>
 
     <div>
+
+
         <h3>Name your taco creation:</h3>
-<!--        <input type="text" th:field="*{name}"/>-->
-<!--        <span class="validationError"-->
-<!--              th:if="${#fields.hasErrors('name')}"-->
-<!--              th:errors="*{name}">Name Error</span>-->
-<!--        <br/>-->
+        <input type="text" th:field="*{name}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">Name Error</span>
+        <br/>
 
         <button>Submit Your Taco</button>
     </div>
