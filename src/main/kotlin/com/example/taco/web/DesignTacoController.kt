@@ -1,10 +1,9 @@
 package com.example.taco.web
 
-import com.example.taco.Ingredient
-import com.example.taco.Taco
-import com.example.taco.TacoOrder
-import com.example.taco.Type
+import com.example.taco.*
 import com.example.taco.data.IngredientRepository
+import com.example.taco.data.TacoRepository
+import com.example.taco.data.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -18,9 +17,11 @@ import javax.validation.Valid
 
 @Controller
 @RequestMapping("/design")
-@SessionAttributes("tacoOrder")
+@SessionAttributes("order")
 class DesignTacoController @Autowired constructor(
-    private val ingredientRepo: IngredientRepository
+    private val ingredientRepo: IngredientRepository,
+    private val tacoRepository: TacoRepository,
+    private val userRepository: UserRepository
 ) {
     @ModelAttribute
     fun addIngredientsToModel(model: Model) {
@@ -35,7 +36,7 @@ class DesignTacoController @Autowired constructor(
         }
     }
 
-    @ModelAttribute(name = "tacoOrder")
+    @ModelAttribute(name = "order")
     fun order(): TacoOrder {
         return TacoOrder()
     }
@@ -45,6 +46,12 @@ class DesignTacoController @Autowired constructor(
         return Taco()
     }
 
+    @ModelAttribute(name = "user")
+    fun user(): User {
+        return User()
+    }
+
+
     @GetMapping
     fun showDesignForm(): String {
         return "design"
@@ -52,13 +59,14 @@ class DesignTacoController @Autowired constructor(
 
     @PostMapping
     fun processTaco(
-        taco: @Valid Taco?, errors: Errors,
-        @ModelAttribute tacoOrder: TacoOrder
+        taco: @Valid Taco, errors: Errors,
+        @ModelAttribute order: TacoOrder
     ): String {
         if (errors.hasErrors()) {
             return "design"
         }
-        tacoOrder.addTaco(taco!!)
+        var saved = tacoRepository.save(taco)
+        order.addTaco(saved)
         return "redirect:/orders/current"
     }
 

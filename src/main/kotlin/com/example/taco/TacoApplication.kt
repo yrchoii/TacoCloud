@@ -6,27 +6,25 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
-import tacos.Ingredient
-import tacos.TacoCloudApplication
 
 
 @SpringBootApplication
 class TacoCloudApplication{
 
 	@Bean
-	fun dataLoader(repo: tacos.data.IngredientRepository): CommandLineRunner {
+	fun dataLoader(repo: IngredientRepository): CommandLineRunner {
 		return CommandLineRunner {
 			repo.deleteAll() // TODO: Quick hack to avoid tests from stepping on each other with constraint violations
-			repo.save(Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP))
-			repo.save(Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP))
-			repo.save(Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN))
-			repo.save(Ingredient("CARN", "Carnitas", Ingredient.Type.PROTEIN))
-			repo.save(Ingredient("TMTO", "Diced Tomatoes", Ingredient.Type.VEGGIES))
-			repo.save(Ingredient("LETC", "Lettuce", Ingredient.Type.VEGGIES))
-			repo.save(Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE))
-			repo.save(Ingredient("JACK", "Monterrey Jack", Ingredient.Type.CHEESE))
-			repo.save(Ingredient("SLSA", "Salsa", Ingredient.Type.SAUCE))
-			repo.save(Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE))
+			repo.save(Ingredient("FLTO", "Flour Tortilla", Type.WRAP))
+			repo.save(Ingredient("COTO", "Corn Tortilla", Type.WRAP))
+			repo.save(Ingredient("GRBF", "Ground Beef", Type.PROTEIN))
+			repo.save(Ingredient("CARN", "Carnitas", Type.PROTEIN))
+			repo.save(Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES))
+			repo.save(Ingredient("LETC", "Lettuce", Type.VEGGIES))
+			repo.save(Ingredient("CHED", "Cheddar", Type.CHEESE))
+			repo.save(Ingredient("JACK", "Monterrey Jack", Type.CHEESE))
+			repo.save(Ingredient("SLSA", "Salsa", Type.SAUCE))
+			repo.save(Ingredient("SRCR", "Sour Cream", Type.SAUCE))
 		}
 	}
 }

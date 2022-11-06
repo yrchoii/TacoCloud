@@ -17,16 +17,16 @@ import javax.validation.constraints.Size;
 class Taco {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private val id: Long? = null
+    var id: Long? = null
 
     @NotNull
     @Size(min = 5, message = "Name must be at least 5 characters long")
-    private val name: String? = null
-    private val createdAt = Date()
+    var name: String? = null
+    var createdAt = Date()
 
     @Size(min = 1, message = "You must choose at least 1 ingredient")
     @ManyToMany
-    private val ingredients: MutableList<Ingredient> = ArrayList()
+    var ingredients: MutableList<Ingredient> = ArrayList()
     fun addIngredient(ingredient: Ingredient) {
         ingredients.add(ingredient)
     }

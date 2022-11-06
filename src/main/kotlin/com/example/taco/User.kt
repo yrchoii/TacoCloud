@@ -17,11 +17,11 @@ import javax.persistence.*
 @RequiredArgsConstructor
 data class User(private var username: String="",
                 private var password: String="",
-                private var fullname: String="",
-                private var street: String="",
-                private var city: String="",
-                private var state: String="",
-                private var zip: String="",
+                var fullname: String="",
+                var street: String="",
+                var city: String="",
+                var state: String="",
+                var zip: String="",
                 private var phoneNumber: String="",
                 ):UserDetails
 {
